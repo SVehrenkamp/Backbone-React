@@ -1,6 +1,6 @@
 var $ = require('jquery');
 var _ = require('underscore');
-var Comments = require('./Comments.react');
+var Search = require('./Search.react');
 var Backbone = require('backbone');
 Backbone.$ = $;
 
@@ -23,9 +23,10 @@ var View = Backbone.View.extend({
 		
 		//React.render(<Comments data={this.collection} />, document.getElementById('backbone'));
 		React.render(
-			React.createElement(Comments, {
+			React.createElement(Search, {
 			data: self.collection,
-			alert: self.alertThis
+			alert: self.alertThis,
+			handleChange: self.alertChange
 
 		}), document.getElementById('backbone'));
 
@@ -36,7 +37,9 @@ var View = Backbone.View.extend({
 		//alert('You Clicked' + e.target.innerText);
 		var $target = e.target;
 		$target.remove();
-		console.log();
+	},
+	alertChange: function(e){
+		console.log('Change!', e.target.value);
 	}
 });
 
