@@ -18,7 +18,6 @@ var Collection = Backbone.Collection.extend({
       for(var d in resp){
         data.push(resp[d]);
       }
-		console.log('COLLECTION::', data)
 		return data;
 
 	}
