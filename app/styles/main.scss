@@ -65,6 +65,22 @@ body {
         margin-top: 28px;
     }
 }
+ul{
+    list-style:none;
+}
+li{
+    padding:10px;
+    margin:5px 0px;
+    border:1px solid #000;
+    text-align:center;
+}
+li.new-post{
+    -webkit-animation:newPost 2s;
+}
+@-webkit-keyframes newPost {
+    0% {background-color:#cc0000}
+    100% {background-color:#FFFFFF}
+}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
