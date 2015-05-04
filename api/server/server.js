@@ -1,6 +1,6 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
-
+var path = require('path');
 var app = module.exports = loopback();
 
 app.start = function() {
@@ -13,6 +13,9 @@ app.start = function() {
 
 // Bootstrap the application, configure models, datasources and middleware.
 // Sub-apps like REST API are mounted via boot scripts.
+//App Entry Point index.html file
+	app.use(loopback.static(path.resolve(__dirname, '../../client')));
+	
 boot(app, __dirname, function(err) {
   if (err) throw err;
 
