@@ -9,18 +9,18 @@ var Collection = Backbone.Collection.extend({
 
 	},
 	url: function(){
-		url = "https://boiling-torch-7113.firebaseio.com/posts.json";
+		url = "/twitter";
 		return url;
 
 	},
-	parse: function(resp, options){
-      var data = [];
-      for(var d in resp){
-        data.push(resp[d]);
-      }
-		return data;
+	// parse: function(resp, options){
+ //      var data = [];
+ //      for(var d in resp){
+ //        data.push(resp[d]);
+ //      }
+	// 	return data;
 
-	}
+	// }
 });
 
 module.exports = Collection;

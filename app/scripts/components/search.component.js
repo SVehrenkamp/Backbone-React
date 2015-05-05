@@ -8,7 +8,7 @@ var Search = React.createClass({
 
 		//Filter the collection based on the filter value
 		var results = initialData.filter( function(obj) {
-            return ~obj.get('body').toLowerCase().indexOf(filterValue) || ~obj.get('title').toLowerCase().indexOf(filterValue);
+            return ~obj.get('text').toLowerCase().indexOf(filterValue);
             
         });
 		
@@ -53,7 +53,7 @@ var ResultsList = React.createClass({
 
 	render: function(){
 		var listResults = function(post){
-			return (<li className="new-post">{post.get('title')}<br /><em>{post.get('body')}</em></li>);
+			return (<li className="new-post">{post.get('text')}<br /><em>{post.get('user').screen_name}</em></li>);
 		};
 
 		return (<ul onClick={this.props.alert}>{this.props.data.map(listResults)}</ul>);

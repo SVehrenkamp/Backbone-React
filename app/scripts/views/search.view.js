@@ -12,6 +12,8 @@ var View = Backbone.View.extend({
 		this.collection.fetch().done(function(){
 			self.render();
 		});
+		
+		console.log(this.collection);
 		_.bindAll(this, "refresh");
 
 	},
