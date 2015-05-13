@@ -3,14 +3,34 @@ var boot = require('loopback-boot');
 var path = require('path');
 var app = module.exports = loopback();
 var request = require('request');
+var Twit = require('twit');
+var http = require('http');
 
 app.start = function() {
   // start the web server
-  return app.listen(function() {
+  app.listen(function() {
     app.emit('started');
+
     console.log('Web server listening at: %s', app.get('url'));
   });
 };
+
+var config = {};
+config.twitter = {};
+config.twitter.consumerKey = '77DLzH2fkahdrR0K68FLEJdyn';
+config.twitter.consumerSecret = 'eRuKVzv96eHUZJfw0uIEDHERZfhUv26OVHWFSGWPXehsCq90mh';
+config.twitter.accessToken = '1317434858-rGGymTctTHsMhd9gutJ65PVeiLZTOVoMFCmw1OA';
+config.twitter.accessTokenSecret = 'PvWvzMyCojDUxSX3Ak45Q3AE70dQYBy8uaX0EDsyhRHx3';
+
+
+var T = new Twit({
+  consumer_key: config.twitter.consumerKey,
+  consumer_secret: config.twitter.consumerSecret,
+  access_token: config.twitter.accessToken,
+  access_token_secret: config.twitter.accessTokenSecret
+});
+
+
 
 /*
 * Generate Twitter Oauth Bearer Token
@@ -32,7 +52,17 @@ boot(app, __dirname, function(err) {
 
   // start the server if `$ node server.js`
   if (require.main === module)
-    app.start();
+    //app.start();
+	app.io = require('socket.io')(app.start());
+	var stream = T.stream('statuses/filter', {track: 'mango'});
+
+	app.io.on('connection', function(socket){
+		console.log('Socket Connected:.');
+		// stream.on('tweet', function(tweet){
+		// 	console.log('NEW TWEET:..', tweet);
+		// 	socket.emit('info', {tweet: tweet});
+		// })
+	});
 });
 
 //Custom Routes
@@ -63,6 +93,6 @@ var getTwitterFeed = function(req, res, user, postCount){
 	
 }
 //Mount middleware
-app.use('/twitter', function(req, res){
-	getTwitterFeed(req, res);
-});
+// app.use('/twitter', function(req, res){
+// 	getTwitterFeed(req, res);
+// });

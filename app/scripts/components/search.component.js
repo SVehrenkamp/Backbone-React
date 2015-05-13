@@ -26,6 +26,14 @@ var Search = React.createClass({
 	componentDidMount: function(){
 		setInterval(this.getUpdatedList, 4000);
 	},
+	componentWillMount: function() {
+        var socket = io.connect();
+        var self = this;
+
+        socket.on('info', function (data) {
+            console.log(data);
+        });
+    },
 	render: function(){
 		return (
 			<div className="search">

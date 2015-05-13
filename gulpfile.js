@@ -16,8 +16,8 @@ var source = require('vinyl-source-stream'),
     destFolder = './client/scripts',
     destFileName = 'app.js';
 
-var browserSync = require('browser-sync');
-var reload = browserSync.reload;
+// var browserSync = require('browser-sync');
+// var reload = browserSync.reload;
 
 // Styles
 gulp.task('styles', ['sass'  ]);
@@ -156,15 +156,15 @@ gulp.task('extras', function() {
 // Watch
 gulp.task('watch', ['html', 'fonts', 'bundle'], function() {
 
-    browserSync({
-        notify: false,
-        logPrefix: 'BS',
-        // Run as an https by uncommenting 'https: true'
-        // Note: this uses an unsigned certificate which on first access
-        //       will present a certificate warning in the browser.
-        // https: true,
-        server: ['client', 'app']
-    });
+    // browserSync({
+    //     notify: false,
+    //     logPrefix: 'BS',
+    //     // Run as an https by uncommenting 'https: true'
+    //     // Note: this uses an unsigned certificate which on first access
+    //     //       will present a certificate warning in the browser.
+    //     // https: true,
+    //     server: ['client', 'app']
+    // });
 
     // Watch .json files
     gulp.watch('app/scripts/**/*.json', ['json']);
